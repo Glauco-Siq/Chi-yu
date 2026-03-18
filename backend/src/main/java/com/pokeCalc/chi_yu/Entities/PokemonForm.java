@@ -30,4 +30,9 @@ public class PokemonForm {
 
     @Embedded
     private BaseStats baseStats;
+
+    @ManyToOne
+    @JoinColumn( name = "pokemon_specie_id", nullable = false)
+    private PokemonSpecie specie;
+
 }
