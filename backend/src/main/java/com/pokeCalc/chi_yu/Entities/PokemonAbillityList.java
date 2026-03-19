@@ -12,7 +12,8 @@ public class PokemonAbillityList {
 
     @ManyToOne
     @JoinColumn(name = "pokemon_form_id", nullable = false)
-    private PokemonForm pokemonForm;
+    private PokemonStatHistory statHistory;
+
 
     @ManyToOne
     @JoinColumn(name = "ability_id", nullable = false)

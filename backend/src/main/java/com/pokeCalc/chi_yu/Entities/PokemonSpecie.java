@@ -25,5 +25,4 @@ public class PokemonSpecie {
     @OneToMany(mappedBy = "specie", cascade = CascadeType.ALL)
     private List<PokemonForm> forms;
 
-
 }

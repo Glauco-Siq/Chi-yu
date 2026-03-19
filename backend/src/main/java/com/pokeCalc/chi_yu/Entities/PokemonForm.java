@@ -1,6 +1,4 @@
 package com.pokeCalc.chi_yu.Entities;
-
-import com.pokeCalc.chi_yu.Entities.Enums.Type;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,23 +14,14 @@ public class PokemonForm {
     @GeneratedValue (strategy = GenerationType.UUID)
     private String id;
 
-    @OneToMany(mappedBy = "pokemonForm", cascade = CascadeType.ALL)
-    private List<PokemonAbillityList> pokemonAbilities;
-
     @Column (name = "form_name")
     private String formName;
-
-    @Enumerated(EnumType.STRING)
-    private Type primaryType;
-
-    @Enumerated(EnumType.STRING)
-    private Type secondaryType;
-
-    @Embedded
-    private BaseStats baseStats;
 
     @ManyToOne
     @JoinColumn( name = "pokemon_specie_id", nullable = false)
     private PokemonSpecie specie;
 
+    @OneToMany(mappedBy = "pokemonForm")
+    private List<PokemonStatHistory> pokemonStatHistory;
+    
 }
