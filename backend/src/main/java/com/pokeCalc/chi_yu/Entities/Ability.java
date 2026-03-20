@@ -4,6 +4,8 @@ import com.pokeCalc.chi_yu.Entities.Enums.AbilityType;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "abilities")
@@ -21,4 +23,7 @@ public class Ability {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private AbilityType type;
+
+    @OneToMany(mappedBy = "ability")
+    private List<PokemonAbillityList> abillityList;
 }
