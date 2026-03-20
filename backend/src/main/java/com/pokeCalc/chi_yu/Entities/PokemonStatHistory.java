@@ -33,12 +33,22 @@ public class PokemonStatHistory {
     @JoinColumn(name = "pokemon_form_id")
     private PokemonForm pokemonForm;
 
-    @OneToMany(mappedBy = "statHistory", cascade = CascadeType.ALL)
-    private List<PokemonAbillityList> pokemonAbilities;
+    @OneToMany(mappedBy = "pokeStatHistory")
+    private List<PokemonAbillityList> abillityList;
 
     @Enumerated(EnumType.STRING)
     private Type primaryType;
 
     @Enumerated(EnumType.STRING)
     private Type secondaryType;
+
+    @ManyToMany
+    @JoinTable(
+            name = "pokemon_learnable_moves",
+            joinColumns = @JoinColumn(name = "form_generation_data_id"),
+            inverseJoinColumns = @JoinColumn(name = "move_generation_data_id")
+    )
+    private List<MoveGenerationData> learnableMoves;
+
+
 }

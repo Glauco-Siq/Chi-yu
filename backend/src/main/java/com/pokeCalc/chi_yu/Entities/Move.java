@@ -1,23 +1,26 @@
 package com.pokeCalc.chi_yu.Entities;
 
 import jakarta.persistence.*;
-import jdk.jfr.Relational;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class PokemonMoveList {
+@NoArgsConstructor
+public class Move {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    String id;
+    private String id;
 
-    @ManyToOne
-    @JoinColumn(name = "pokemon_form_id", nullable = false)
-    private PokemonForm pokemonForm;
+    @Column(name = "move_name")
+    private String moveName;
+
+    @OneToMany(mappedBy = "move")
+    private List<MoveGenerationData> moveGenerationData;
 
 
 }

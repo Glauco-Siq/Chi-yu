@@ -11,9 +11,8 @@ public class PokemonAbillityList {
     private String id;
 
     @ManyToOne
-    @JoinColumn(name = "pokemon_form_id", nullable = false)
-    private PokemonStatHistory statHistory;
-
+    @JoinColumn(name = "pokemon_history_id", nullable = false)
+    private PokemonStatHistory pokeStatHistory;
 
     @ManyToOne
     @JoinColumn(name = "ability_id", nullable = false)
