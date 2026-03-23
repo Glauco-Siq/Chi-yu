@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -12,7 +13,7 @@ import java.util.List;
 public class PokemonForm {
     @Id
     @GeneratedValue (strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
 
     @Column (name = "form_name")
     private String formName;

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Data
@@ -14,7 +15,7 @@ import java.util.List;
 public class PokemonSpecie {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    String id;
+    private UUID id;
 
     @Column(nullable = false, name = "national_dex_number")
     private int nationaDexNumber;

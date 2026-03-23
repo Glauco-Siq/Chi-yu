@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Data
@@ -14,12 +15,12 @@ import java.util.List;
 public class Move {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
 
     @Column(name = "move_name")
     private String moveName;
 
-    @OneToMany(mappedBy = "move")
+    @OneToMany(mappedBy = "move", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MoveGenerationData> moveGenerationData;
 
 
