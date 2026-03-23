@@ -1,5 +1,6 @@
 package com.pokeCalc.chi_yu.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pokeCalc.chi_yu.Entities.Enums.Generation;
 import com.pokeCalc.chi_yu.Entities.Enums.MoveType;
 import com.pokeCalc.chi_yu.Entities.Enums.Type;
@@ -7,6 +8,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.UUID;
 
 @Entity
 @Data
@@ -16,10 +19,11 @@ import lombok.NoArgsConstructor;
 public class MoveGenerationData {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
 
     @ManyToOne
     @JoinColumn(name = "move_id")
+    @JsonIgnore
     private Move move;
 
     @Column(name = "move_base_damage")
