@@ -1,10 +1,9 @@
 package com.pokeCalc.chi_yu.Controllers;
-
 import com.pokeCalc.chi_yu.DTOs.Mappers.MoveMapper;
 import com.pokeCalc.chi_yu.DTOs.Request.MoveGenerationDataRequestDto;
 import com.pokeCalc.chi_yu.DTOs.Request.MoveRequestDto;
+import com.pokeCalc.chi_yu.DTOs.Response.MoveGenerationDataResponseDto;
 import com.pokeCalc.chi_yu.DTOs.Response.MoveResponseDto;
-import com.pokeCalc.chi_yu.Entities.Move;
 import com.pokeCalc.chi_yu.Services.MoveService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +43,11 @@ public class MoveController {
     public ResponseEntity<MoveResponseDto> addGenerationData(@PathVariable UUID id, @RequestBody @Valid MoveGenerationDataRequestDto dto){
         MoveResponseDto response = moveService.addMoveGenerationData(id, dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @PutMapping("/{id}/generation-data")
+    public ResponseEntity<MoveGenerationDataResponseDto> updateMoveGenData(@PathVariable UUID id, @RequestBody @Valid MoveGenerationDataRequestDto dto){
+        MoveGenerationDataResponseDto response =  moveService.editMoveGenerationData(id, dto);
+        return ResponseEntity.ok(response);
     }
 }
