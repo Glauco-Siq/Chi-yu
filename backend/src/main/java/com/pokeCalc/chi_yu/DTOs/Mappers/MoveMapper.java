@@ -2,6 +2,7 @@ package com.pokeCalc.chi_yu.DTOs.Mappers;
 
 import com.pokeCalc.chi_yu.DTOs.Request.MoveGenerationDataRequestDto;
 import com.pokeCalc.chi_yu.DTOs.Request.MoveRequestDto;
+import com.pokeCalc.chi_yu.DTOs.Response.MoveGenerationDataResponseDto;
 import com.pokeCalc.chi_yu.DTOs.Response.MoveResponseDto;
 import com.pokeCalc.chi_yu.Entities.Move;
 import com.pokeCalc.chi_yu.Entities.MoveGenerationData;
@@ -24,6 +25,13 @@ public class MoveMapper {
         genData.setBaseDamage(dto.baseDamage());
         genData.setGeneration(dto.generation());
         genData.setType(dto.elementalType());
+        genData.setMoveType(dto.moveType());
         return genData;
+    }
+
+    public MoveGenerationDataResponseDto entityToDtoGenDataResponse(MoveGenerationData moveGenerationData){
+        return new MoveGenerationDataResponseDto(moveGenerationData.getId(),moveGenerationData.getMove().getId(),
+                moveGenerationData.getBaseDamage(),moveGenerationData.getMoveType(),moveGenerationData.getGeneration(),
+                moveGenerationData.getType());
     }
 }
