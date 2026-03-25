@@ -26,5 +26,5 @@ public class Ability {
     private AbilityType type;
 
     @OneToMany(mappedBy = "ability")
-    private List<PokemonAbillityList> abillityList;
+    private List<PokemonAbilityList> abillityList;
 }

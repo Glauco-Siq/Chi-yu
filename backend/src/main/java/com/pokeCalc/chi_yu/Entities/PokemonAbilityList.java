@@ -6,7 +6,7 @@ import java.util.UUID;
 
 @Entity
 @Data
-public class PokemonAbillityList {
+public class PokemonAbilityList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

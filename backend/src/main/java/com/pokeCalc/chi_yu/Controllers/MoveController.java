@@ -19,7 +19,7 @@ public class MoveController {
     @Autowired
     MoveService moveService;
     @Autowired
-    private MoveMapper moveMapper;
+    MoveMapper moveMapper;
 
     @PostMapping
     public ResponseEntity<MoveResponseDto> createMove(@RequestBody @Valid MoveRequestDto dto){
