@@ -3,9 +3,6 @@ import com.pokeCalc.chi_yu.DTOs.Request.MoveGenerationDataRequestDto;
 import com.pokeCalc.chi_yu.DTOs.Request.MoveRequestDto;
 import com.pokeCalc.chi_yu.DTOs.Response.MoveGenerationDataResponseDto;
 import com.pokeCalc.chi_yu.DTOs.Response.MoveResponseDto;
-import com.pokeCalc.chi_yu.Entities.Move;
-import com.pokeCalc.chi_yu.Entities.MoveGenerationData;
-
 import java.util.UUID;
 
 public interface MoveService {

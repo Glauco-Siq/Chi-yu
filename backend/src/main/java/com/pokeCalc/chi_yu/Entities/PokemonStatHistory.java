@@ -35,7 +35,7 @@ public class PokemonStatHistory {
     private PokemonForm pokemonForm;
 
     @OneToMany(mappedBy = "pokeStatHistory")
-    private List<PokemonAbillityList> abillityList;
+    private List<PokemonAbilityList> abillityList;
 
     @Enumerated(EnumType.STRING)
     private Type primaryType;
