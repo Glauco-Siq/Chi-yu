@@ -5,6 +5,7 @@ import com.pokeCalc.chi_yu.DTOs.Response.AbilityResponseDto;
 import com.pokeCalc.chi_yu.Entities.Ability;
 import com.pokeCalc.chi_yu.Repositories.AbilityRepository;
 import com.pokeCalc.chi_yu.Services.AbilityService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.UUID;
 
+@RequiredArgsConstructor
 @Service
 public class AbilityServiceImpl implements AbilityService {
 
@@ -25,6 +27,11 @@ public class AbilityServiceImpl implements AbilityService {
     @Override
     public AbilityResponseDto createAbility(AbilityRequestDto dto){
         Ability ability = abilityMapper.dtoToEntity(dto);
+
+        if(abilityRepository.existsByName(dto.name())){
+            throw new IllegalArgumentException("Já existe uma habilidade cadastrada com o nome: "+ dto.name());
+        }
+
         abilityRepository.save(ability);
         return abilityMapper.entityToDto(ability);
     }

@@ -9,6 +9,7 @@ import com.pokeCalc.chi_yu.Entities.Move;
 import com.pokeCalc.chi_yu.Entities.MoveGenerationData;
 import com.pokeCalc.chi_yu.Repositories.MoveRepository;
 import com.pokeCalc.chi_yu.Services.MoveService;
+import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.NotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.ArrayList;
 import java.util.UUID;
 
+@RequiredArgsConstructor
 @Service
 public class MoveServiceImpl implements MoveService {
 

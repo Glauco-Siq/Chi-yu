@@ -1,4 +1,5 @@
 package com.pokeCalc.chi_yu.Entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,9 +21,10 @@ public class PokemonForm {
 
     @ManyToOne
     @JoinColumn( name = "pokemon_specie_id", nullable = false)
+    @JsonIgnore
     private PokemonSpecie specie;
 
-    @OneToMany(mappedBy = "pokemonForm")
+    @OneToMany(mappedBy = "pokemonForm", cascade = CascadeType.ALL)
     private List<PokemonStatHistory> pokemonStatHistory;
     
 }
