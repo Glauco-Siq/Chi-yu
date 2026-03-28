@@ -1,4 +1,5 @@
 package com.pokeCalc.chi_yu.Entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pokeCalc.chi_yu.Entities.Enums.Game;
 import com.pokeCalc.chi_yu.Entities.Enums.Generation;
 import com.pokeCalc.chi_yu.Entities.Enums.Type;
@@ -23,6 +24,7 @@ public class PokemonStatHistory {
     private BaseStats stats;
 
     @Column(name = "game", nullable = false)
+    @Enumerated(EnumType.STRING)
     private Game game;
 
     @Transient
@@ -34,6 +36,7 @@ public class PokemonStatHistory {
     @JoinColumn(name = "pokemon_form_id")
     private PokemonForm pokemonForm;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "pokeStatHistory")
     private List<PokemonAbilityList> abillityList;
 

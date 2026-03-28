@@ -17,8 +17,8 @@ public class PokemonSpecie {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(nullable = false, name = "national_dex_number")
-    private int nationaDexNumber;
+    @Column(nullable = false, name = "national_dex_number", unique = true)
+    private int nationalDexNumber;
 
     @Column(nullable = false, name = "pokemon_name")
     private String pokemonName;
