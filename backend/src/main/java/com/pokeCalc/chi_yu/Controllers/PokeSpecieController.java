@@ -5,7 +5,6 @@ import com.pokeCalc.chi_yu.DTOs.Response.SpecieResponseDto;
 import com.pokeCalc.chi_yu.Services.PokeSpecieService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +35,12 @@ public class PokeSpecieController {
     public ResponseEntity<SpecieResponseDto> updatePokeSpecie(@PathVariable UUID id, @RequestBody @Valid SpecieRequestDto dto){
         SpecieResponseDto response = pokeSpecieService.updateSpecie(id, dto);
         return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletePokeSpecie(@PathVariable UUID id){
+        pokeSpecieService.deleteSpecie(id);
     }
 
 }

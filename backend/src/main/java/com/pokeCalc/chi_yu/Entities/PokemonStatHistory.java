@@ -37,7 +37,7 @@ public class PokemonStatHistory {
     private PokemonForm pokemonForm;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "pokeStatHistory")
+    @OneToMany(mappedBy = "pokeStatHistory", cascade = CascadeType.ALL)
     private List<PokemonAbilityList> abillityList;
 
     @Enumerated(EnumType.STRING)
@@ -53,6 +53,5 @@ public class PokemonStatHistory {
             inverseJoinColumns = @JoinColumn(name = "move_generation_data_id")
     )
     private List<MoveGenerationData> learnableMoves;
-
 
 }
