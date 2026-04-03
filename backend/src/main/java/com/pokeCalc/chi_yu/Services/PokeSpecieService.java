@@ -9,4 +9,5 @@ public interface PokeSpecieService {
     public SpecieResponseDto createSpecie(SpecieRequestDto dto);
     public SpecieResponseDto getSpecie(UUID id);
     public SpecieResponseDto updateSpecie(UUID id, SpecieRequestDto dto);
+    public void deleteSpecie(UUID id);
 }

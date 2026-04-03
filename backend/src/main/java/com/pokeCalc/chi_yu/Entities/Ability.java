@@ -25,6 +25,6 @@ public class Ability {
     @Column(nullable = false)
     private AbilityType type;
 
-    @OneToMany(mappedBy = "ability")
+    @OneToMany(mappedBy = "ability", cascade = CascadeType.ALL)
     private List<PokemonAbilityList> abillityList;
 }

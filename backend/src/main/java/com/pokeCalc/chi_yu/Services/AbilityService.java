@@ -8,5 +8,5 @@ public interface AbilityService {
     public AbilityResponseDto createAbility(AbilityRequestDto dto);
     public AbilityResponseDto getAbility(UUID abilityId);
     public AbilityResponseDto updateAbility(UUID abilityId, AbilityRequestDto dto);
-
+    public void deleteAbility(UUID id);
     }

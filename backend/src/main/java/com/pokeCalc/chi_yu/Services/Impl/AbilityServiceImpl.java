@@ -17,11 +17,9 @@ import java.util.UUID;
 @Service
 public class AbilityServiceImpl implements AbilityService {
 
-    @Autowired
-    AbilityMapper abilityMapper;
+    private final AbilityMapper abilityMapper;
 
-    @Autowired
-    AbilityRepository abilityRepository;
+    private final AbilityRepository abilityRepository;
 
     //Colocar uma checagem pra nao deixar criar uma abilidade com mesmo nome
     @Override
@@ -38,19 +36,28 @@ public class AbilityServiceImpl implements AbilityService {
 
     @Override
     public AbilityResponseDto getAbility(UUID abilityId){
-        Ability ability = abilityRepository.findById(abilityId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-                "Abilidade não encontrada com o id: "+ abilityId));
+        Ability ability = buscarAbility(abilityId);
         return abilityMapper.entityToDto(ability);
     }
 
     @Override
     public AbilityResponseDto updateAbility(UUID abilityId, AbilityRequestDto dto){
-        Ability ability = abilityRepository.findById(abilityId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-                "Abilidade não encontrada com o id: "+ abilityId));
+        Ability ability = buscarAbility(abilityId);
         ability.setName(dto.name());
         ability.setDescription(dto.description());
         ability.setType(dto.abilityType());
         Ability newAbility = abilityRepository.save(ability);
         return abilityMapper.entityToDto(newAbility);
+    }
+
+    @Override
+    public void deleteAbility(UUID id) {
+        Ability abilityToDelete = buscarAbility(id);
+        abilityRepository.delete(abilityToDelete);
+    }
+
+    private Ability buscarAbility(UUID id){
+        return abilityRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                "Abilidade não encontrada com o id: "+ id));
     }
 }

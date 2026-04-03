@@ -16,11 +16,9 @@ import java.util.UUID;
 @Service
 public class PokeSpecieServiceImpl implements com.pokeCalc.chi_yu.Services.PokeSpecieService {
 
-    @Autowired
-    PokeSpecieMapper pokeSpecieMapper;
+    private final PokeSpecieMapper pokeSpecieMapper;
 
-    @Autowired
-    PokeSpecieRepository pokeSpecieRepository;
+    private final PokeSpecieRepository pokeSpecieRepository;
 
     @Override
     public SpecieResponseDto createSpecie(SpecieRequestDto dto) {
@@ -31,25 +29,33 @@ public class PokeSpecieServiceImpl implements com.pokeCalc.chi_yu.Services.PokeS
 
     @Override
     public SpecieResponseDto getSpecie(UUID id) {
-        PokemonSpecie entity = pokeSpecieRepository.findById(id).orElseThrow(
-                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "A espécie de pokemon com o id "
-                + id
-                +" não foi encontrado") {
-            });
+        PokemonSpecie entity = buscarEspecie(id);
+
         return pokeSpecieMapper.entityToDto(entity);
     }
 
     @Override
     public SpecieResponseDto updateSpecie(UUID id, SpecieRequestDto dto) {
-        PokemonSpecie originalSpecie = pokeSpecieRepository.findById(id).orElseThrow(
-                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "A espécie de pokemon com o id "
-                        + id
-                        +" não foi encontrado") {
-                });
+        PokemonSpecie originalSpecie = buscarEspecie(id);
 
         originalSpecie.setPokemonName(dto.pokemonName());
         originalSpecie.setNationalDexNumber(dto.nationalDexNumber());
         pokeSpecieRepository.save(originalSpecie);
         return pokeSpecieMapper.entityToDto(originalSpecie);
     }
+
+    @Override
+    public void deleteSpecie(UUID id) {
+        PokemonSpecie specieToDelete = buscarEspecie(id);
+        pokeSpecieRepository.delete(specieToDelete);
+    }
+
+    private PokemonSpecie buscarEspecie(UUID id){
+        return pokeSpecieRepository.findById(id).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "A espécie de pokemon com o id "
+                        + id
+                        +" não foi encontrado") {
+                });
+    }
+
 }
